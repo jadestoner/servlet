@@ -1,4 +1,4 @@
-package com.login.service.impl;
+package com.poshi.cn.service.impl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.login.service.StatementHandle;
-import com.login.sql.MethodOfSql;
-import com.login.utils.DbUtils;
+import com.poshi.cn.service.StatementHandle;
+import com.poshi.cn.sql.MethodOfSql;
+import com.poshi.cn.utils.DbUtils;
 
 @WebServlet("/loginHandle")
 public class LoginHandle extends HttpServlet implements StatementHandle{

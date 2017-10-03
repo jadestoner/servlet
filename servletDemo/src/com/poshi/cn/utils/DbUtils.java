@@ -1,4 +1,4 @@
-package com.login.utils;
+package com.poshi.cn.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.login.service.StatementHandle;
-import com.login.sql.MethodOfSql;
 import com.mysql.jdbc.ResultSetMetaData;
+import com.poshi.cn.service.StatementHandle;
+import com.poshi.cn.sql.MethodOfSql;
 
 /**
  * Servlet implementation class DbUtils

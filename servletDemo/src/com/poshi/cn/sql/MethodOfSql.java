@@ -1,4 +1,4 @@
-package com.login.sql;
+package com.poshi.cn.sql;
 
 public enum MethodOfSql {
 

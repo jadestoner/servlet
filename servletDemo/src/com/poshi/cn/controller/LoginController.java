@@ -1,4 +1,4 @@
-package com.login.controller;
+package com.poshi.cn.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import sun.rmi.server.Dispatcher;
 
-import com.login.service.impl.BaseHandle;
-import com.login.service.impl.LoginHandle;
-import com.login.utils.DbUtils;
+import com.poshi.cn.service.impl.BaseHandle;
+import com.poshi.cn.service.impl.LoginHandle;
+import com.poshi.cn.utils.DbUtils;
 
 /**
  * Servlet implementation class LoginController
@@ -34,8 +34,10 @@ public class LoginController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 RequestDispatcher dispatcher =  request.getRequestDispatcher("/loginHandle");
-		 dispatcher.forward(request, response);
+		String method = request.getParameter("method");
+		if("login".equals(method)){
+			RequestDispatcher dispatcher =  request.getRequestDispatcher("/loginHandle");
+			dispatcher.forward(request, response);
+		}
 	}
-
 }

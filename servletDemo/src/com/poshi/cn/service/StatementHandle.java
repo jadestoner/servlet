@@ -1,9 +1,9 @@
-package com.login.service;
+package com.poshi.cn.service;
 
 import java.sql.ResultSet;
 import java.util.Map;
 
-import com.login.sql.MethodOfSql;
+import com.poshi.cn.sql.MethodOfSql;
 
 
 public interface StatementHandle {

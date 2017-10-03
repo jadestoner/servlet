@@ -1,10 +1,10 @@
-package com.login.service.impl;
+package com.poshi.cn.service.impl;
 
 import java.sql.ResultSet;
 import java.util.Map;
 
-import com.login.service.StatementHandle;
-import com.login.sql.MethodOfSql;
+import com.poshi.cn.service.StatementHandle;
+import com.poshi.cn.sql.MethodOfSql;
 
 public abstract class BaseHandle implements StatementHandle {
 	
