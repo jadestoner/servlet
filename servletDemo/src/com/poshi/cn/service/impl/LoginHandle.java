@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -57,23 +56,7 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 	}
 	
 	public Map login(ResultSet rs) throws SQLException{
-		Map result = new HashMap();
-		while(rs.next()){
-			result.put("total", rs.getInt(1));
-		}
-		return result;
-	}
-
-	@Override
-	public Map handle(ResultSet rs, MethodOfSql ms){
-		String name = ms.getMethod();
-		try {
-			Method method = this.getClass().getMethod(name,ResultSet.class);
-			return (Map)method.invoke(this, rs);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+		return  DbUtils.getResultMap(rs);
 	}
 	
 }
