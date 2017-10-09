@@ -50,7 +50,7 @@ public class Response<T> implements Serializable{
 		this.value = value;
 	}
 
-	private enum Status{
+	public enum Status{
 		success,error
 	}
 }

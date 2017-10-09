@@ -8,7 +8,7 @@
 <script type="text/javascript" src="js/external/jquery-3.2.1.js"></script>
 </head>
 <body>
-<form>
+<form id="form">
 姓名：<input type="text" id="name" name="name"/><br/>
 密碼：<input type="text" id="pass" name="pass"/><br/>
 <input type="button" id="submit" value="注冊"/>
@@ -23,9 +23,10 @@ $(function(){
 			method:"login"
 		};
 		$.post("login",data,function(result){
-			if(result.status){
+			if(result.status=="success"){
 				window.location.href='index.jsp';
 			}else{
+				$('#form')[0].reset()
 				alert(result.message);				
 			}
 		});

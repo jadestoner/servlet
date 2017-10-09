@@ -53,12 +53,12 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 		}
 		int total = Integer.valueOf(String.valueOf(result.get("total")));
 		String msg = "";
+		Response res;
 		if(total>0){
-			msg="登录成功！";
+			res = new Response("登录成功！");
 		}else {
-			msg="为查询到相关顾客！";	
+			res = new Response(Response.Status.error,"未查询到相关顾客！");
 		}	
-		Response res = new Response(msg);
 		CommonUtils.returnJson(response, JSON.toJSONString(res));
 	}
 	
