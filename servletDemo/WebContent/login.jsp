@@ -9,9 +9,10 @@
 </head>
 <body>
 <form id="form">
-姓名：<input type="text" id="name" name="name"/><br/>
-密碼：<input type="text" id="pass" name="pass"/><br/>
-<input type="button" id="submit" value="注冊"/>
+账号：<input type="text" id="name" name="name"/><br/>
+密码：<input type="text" id="pass" name="pass"/><br/>
+<input type="button" id="register" value="注册"/>
+<input type="button" id="submit" value="登录"/>
 </form>
 </body>
 <script type="text/javascript">
@@ -21,6 +22,22 @@ $(function(){
 			name:$("#name").val(),
 			pass:$("#pass").val(),
 			method:"login"
+		};
+		$.post("login",data,function(result){
+			if(result.status=="success"){
+				window.location.href='index.jsp';
+			}else{
+				$('#form')[0].reset()
+				alert(result.message);				
+			}
+		});
+	});
+	
+	$("#register").click(function(){
+		var data = {
+			name:$("#name").val(),
+			pass:$("#pass").val(),
+			method:"register"
 		};
 		$.post("login",data,function(result){
 			if(result.status=="success"){

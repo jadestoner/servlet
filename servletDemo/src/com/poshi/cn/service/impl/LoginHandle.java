@@ -38,8 +38,27 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 		String method = request.getParameter("method");
 		if("login".equals(method)){
 			doLogin();
+		}else if("register".equals(method)){
+			doRegister();
 		}
-		
+	}
+	
+	private void doRegister(){
+		String name = request.getParameter("name");
+		String pass = request.getParameter("pass");
+		Integer result = null ;
+		try {
+			result = DbUtils.getDbUtils(request).executePreUpdateSql(MethodOfSql.REGISTER.getSql(), Arrays.asList(name,pass),this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Response res;
+		if(result>0){
+			res = new Response("注册成功！");
+		}else {
+			res = new Response(Response.Status.error,"注册失败！");
+		}	
+		CommonUtils.returnJson(response, JSON.toJSONString(res));
 	}
 	
 	private void doLogin() throws ServletException, IOException{
@@ -47,7 +66,7 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 		String pass = request.getParameter("pass");
 		Map result = null ;
 		try {
-			result = DbUtils.getDbUtils(request).executePreSql(MethodOfSql.LOGIN.getSql(), Arrays.asList(name,pass),this);
+			result = DbUtils.getDbUtils(request).executePreQuerySql(MethodOfSql.LOGIN.getSql(), Arrays.asList(name,pass),this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -63,6 +82,14 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 	}
 	
 	public Map login(ResultSet rs) throws Exception{
+		List<Map<String, Object>> list = DbUtils.resultSetToList(rs);
+		if(list == null || list.size() == 0){
+			return null;
+		}
+		return list.get(0);
+	}
+	
+	public Map register(ResultSet rs) throws Exception{
 		List<Map<String, Object>> list = DbUtils.resultSetToList(rs);
 		if(list == null || list.size() == 0){
 			return null;

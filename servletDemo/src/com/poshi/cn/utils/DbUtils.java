@@ -61,7 +61,7 @@ public class DbUtils{
         return result;
 	}
 	
-	public Map executePreSql( String sql, List<Object> list, StatementHandle callBack) throws Exception{
+	public Map executePreQuerySql( String sql, List<Object> list, StatementHandle callBack) throws Exception{
 		if(list != null && list.size() != StringUtils.appearNumber(sql, "?")){
 			throw new Exception(String.format("参数数量错误！参数size=%d,sql=%s",list.size(),sql));
 		}
@@ -74,8 +74,22 @@ public class DbUtils{
 		}
 		ResultSet rs = statement.executeQuery();
 		Map result = callBack.handle(rs,MethodOfSql.getBySql(sql));
-		rs.close(); conn.close();
+		statement.close(); conn.close();
         return result;
+	}
+	
+	public Integer executePreUpdateSql( String sql, List<Object> list, StatementHandle callBack) throws Exception{
+		if(list != null && list.size() != StringUtils.appearNumber(sql, "?")){
+			throw new Exception(String.format("参数数量错误！参数size=%d,sql=%s",list.size(),sql));
+		}
+		Connection conn = getConnection();
+		PreparedStatement  statement = conn.prepareStatement(sql);
+		Integer index = 1;
+		for(Object obj : list){
+			statement.setObject(index, obj);
+			index++;
+		}
+		return statement.executeUpdate();
 	}
 	
      private  DbUtils(HttpServletRequest request) {
