@@ -8,15 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import com.mysql.jdbc.ResultSetMetaData;
 import com.poshi.cn.service.StatementHandle;
@@ -25,7 +23,7 @@ import com.poshi.cn.sql.MethodOfSql;
 /**
  * Servlet implementation class DbUtils
  */
-public class DbUtils extends HttpServlet {
+public class DbUtils{
 	private static final long serialVersionUID = 1L;
        
 	private static DbUtils dbUtils;
@@ -34,7 +32,6 @@ public class DbUtils extends HttpServlet {
 	private  String url ;
 	private String username ;
 	private String password ;
-	private HttpServletRequest request;
 	
 	public static DbUtils getDbUtils(HttpServletRequest request){
 		if(dbUtils == null){
@@ -95,29 +92,23 @@ public class DbUtils extends HttpServlet {
          password = prop.getProperty("password");
     }
 
-     public static Map<String, String> getResultMap(ResultSet rs) throws SQLException {  
-         Map<String, String> hm = new HashMap<String, String>();  
-         ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();  
-         int count = rsmd.getColumnCount();  
-         for (int i = 1; i <= count; i++) {  
-             String key = rsmd.getColumnLabel(i);  
-             String value = rs.getString(i);  
-             hm.put(key, value);  
-         }  
-         return hm;  
-     }  
-     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	}
-
-	public static void main(String[] args) {
-		
-	}
-
+     public static List<Map<String,Object>> resultSetToList(ResultSet rs) throws SQLException{
+    	 List<Map<String,Object>> results = new ArrayList<Map<String,Object>>();
+    	 ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();  
+    	 int colCount = rsmd.getColumnCount();
+    	 List<String> colNameList = new ArrayList<String>();
+    	 for(int i=0;i<colCount;i++){
+    		 colNameList.add(rsmd.getColumnName(i+1));
+    	 } 
+    	 while(rs.next()){
+	    	 for(int i=0;i<colCount;i++){
+		    	 Map map=new HashMap<String, Object>();
+		    	 String key=colNameList.get(i);
+		    	 Object value=rs.getString(colNameList.get(i));
+		    	 map.put(key, value);
+		    	 results.add(map);
+	    	 }
+    	 }
+    	 return results;
+     } 
 }

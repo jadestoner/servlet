@@ -4,28 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>login</title>
+<title>index</title>
 <script type="text/javascript" src="js/external/jquery-3.2.1.js"></script>
 </head>
 <body>
-<form>
-姓名：<input type="text" id="name" name="name"/><br/>
-密碼：<input type="text" id="pass" name="pass"/><br/>
-<input type="button" id="submit" value="注冊"/>
-</form>
+欢迎
 </body>
 <script type="text/javascript">
 $(function(){
-	$("#submit").click(function(){
-		var data = {
-			name:$("#name").val(),
-			pass:$("#pass").val(),
-			method:"login"
-		};
-		$.post("login",data,function(result){
-			alert(result.msg);
-		});
-	})
 })
 </script>
 </html>

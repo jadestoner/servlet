@@ -1,32 +1,48 @@
 package com.poshi.cn.service.impl;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.Method;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 import com.poshi.cn.service.StatementHandle;
 import com.poshi.cn.sql.MethodOfSql;
+import com.poshi.cn.utils.CommonUtils;
 import com.poshi.cn.utils.DbUtils;
+import com.poshi.cn.utils.Response;
 
 @WebServlet("/loginHandle")
 public class LoginHandle extends HttpServlet implements StatementHandle{
+	
+	private HttpServletRequest request;
+	
+	private HttpServletResponse response;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		this.request = request;
+		this.response = response;
+		String method = request.getParameter("method");
+		if("login".equals(method)){
+			doLogin();
+		}
+		
+	}
+	
+	private void doLogin() throws ServletException, IOException{
 		String name = request.getParameter("name");
 		String pass = request.getParameter("pass");
 		Map result = null ;
@@ -35,28 +51,23 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		int total = (int) result.get("total");
+		int total = Integer.valueOf(String.valueOf(result.get("total")));
 		String msg = "";
-		if(total>0) msg="登录成功！";
-		else msg="为查询到相关顾客！";
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json; charset=utf-8");
-		String jsonStr = "{\"msg\":\""+msg+"\"}";
-		PrintWriter out = null;
-		try {
-		    out = response.getWriter();
-		    out.write(jsonStr);
-		} catch (IOException e) {
-		    e.printStackTrace();
-		} finally {
-		    if (out != null) {
-		        out.close();
-		    }
-		}
+		if(total>0){
+			msg="登录成功！";
+		}else {
+			msg="为查询到相关顾客！";	
+		}	
+		Response res = new Response(msg);
+		CommonUtils.returnJson(response, JSON.toJSONString(res));
 	}
 	
-	public Map login(ResultSet rs) throws SQLException{
-		return  DbUtils.getResultMap(rs);
+	public Map login(ResultSet rs) throws Exception{
+		List<Map<String, Object>> list = DbUtils.resultSetToList(rs);
+		if(list == null || list.size() == 0){
+			return null;
+		}
+		return list.get(0);
 	}
 	
 }
