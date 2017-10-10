@@ -93,7 +93,7 @@ public class DbUtils{
 	}
 	
      private  DbUtils(HttpServletRequest request) {
-        InputStream in = request.getServletContext().getResourceAsStream("/db.properties");
+        InputStream in = request.getServletContext().getResourceAsStream("/WEB-INF/db.properties");
         Properties prop = new Properties();
          try {
 			prop.load(in);

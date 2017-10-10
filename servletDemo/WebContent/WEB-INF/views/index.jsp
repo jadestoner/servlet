@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>index</title>
-<%request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request,response);%>
+<title>index2</title>
+<script type="text/javascript" src="js/external/jquery-3.2.1.js"></script>
 </head>
 <body>
+欢迎1
 </body>
+<script type="text/javascript">
+$(function(){
+	alert("欢迎");
+})
+</script>
 </html>
