@@ -48,6 +48,17 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 		String pass = request.getParameter("pass");
 		Integer result = null ;
 		try {
+			Map res = DbUtils.getDbUtils(request).executePreQuerySql(MethodOfSql.LOGIN.getSql(), Arrays.asList(name,pass),this);
+			int total = Integer.valueOf(String.valueOf(res.get("total")));
+			if(total > 0){
+				Response errorResult = new Response(Response.Status.error,"用户已存在！");
+				CommonUtils.returnJson(response, JSON.toJSONString(errorResult));
+				return;
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		try {
 			result = DbUtils.getDbUtils(request).executePreUpdateSql(MethodOfSql.REGISTER.getSql(), Arrays.asList(name,pass),this);
 		} catch (Exception e) {
 			e.printStackTrace();
