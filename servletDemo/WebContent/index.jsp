@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>index</title>
-<%request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request,response);%>
+<%request.getRequestDispatcher("/WEB-INF/views/index.html").forward(request,response);%>
 </head>
 <body>
 </body>

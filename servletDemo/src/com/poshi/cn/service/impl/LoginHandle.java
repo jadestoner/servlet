@@ -35,10 +35,10 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.request = request;
 		this.response = response;
-		String method = request.getParameter("method");
-		if("login".equals(method)){
+		String handle = request.getParameter("handle");
+		if("login".equals(handle)){
 			doLogin();
-		}else if("register".equals(method)){
+		}else if("register".equals(handle)){
 			doRegister();
 		}
 	}
@@ -89,7 +89,10 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 		}else {
 			res = new Response(Response.Status.error,"未查询到相关顾客！");
 		}	
-		CommonUtils.returnJson(response, JSON.toJSONString(res));
+		RequestDispatcher dispatcher =  request.getRequestDispatcher("/WEB-INF/views/index.html");
+		dispatcher.forward(request, response);
+		
+//		CommonUtils.returnJson(response, JSON.toJSONString(res));
 	}
 	
 	public Map login(ResultSet rs) throws Exception{
