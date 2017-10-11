@@ -3,6 +3,7 @@ package com.poshi.cn.sql;
 public enum MethodOfSql {
 
 	LOGIN("select count(1) total from user where username=? and password =?","login"),
+	USERNAME_EXIST("select count(1) total from user where username=?","login"),
 	REGISTER("insert into user (username,password) values(?,?)","register");
 	
 	

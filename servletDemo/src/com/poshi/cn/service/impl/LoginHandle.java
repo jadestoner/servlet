@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
+import com.poshi.cn.bean.User;
 import com.poshi.cn.service.StatementHandle;
 import com.poshi.cn.sql.MethodOfSql;
 import com.poshi.cn.utils.CommonUtils;
@@ -44,15 +45,15 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 	}
 	
 	private void doRegister(){
-		String name = request.getParameter("name");
-		String pass = request.getParameter("pass");
+		User user = CommonUtils.getBean(request, User.class);
+		String name = request.getParameter("username");
+		String pass = request.getParameter("password");
 		Integer result = null ;
 		try {
-			Map res = DbUtils.getDbUtils(request).executePreQuerySql(MethodOfSql.LOGIN.getSql(), Arrays.asList(name,pass),this);
+			Map res = DbUtils.getDbUtils(request).executePreQuerySql(MethodOfSql.USERNAME_EXIST.getSql(), Arrays.asList(name),this);
 			int total = Integer.valueOf(String.valueOf(res.get("total")));
 			if(total > 0){
-				Response errorResult = new Response(Response.Status.error,"用户已存在！");
-				CommonUtils.returnJson(response, JSON.toJSONString(errorResult));
+				CommonUtils.returnJson(response, "用户已存在！", false);
 				return;
 			}
 		} catch (Exception e1) {
@@ -82,17 +83,14 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 			e.printStackTrace();
 		}
 		int total = Integer.valueOf(String.valueOf(result.get("total")));
-		String msg = "";
 		Response res;
 		if(total>0){
 			res = new Response("登录成功！");
 		}else {
 			res = new Response(Response.Status.error,"未查询到相关顾客！");
 		}	
-		RequestDispatcher dispatcher =  request.getRequestDispatcher("/WEB-INF/views/index.html");
+		RequestDispatcher dispatcher =  request.getRequestDispatcher("/WEB-INF/views/index.jsp");
 		dispatcher.forward(request, response);
-		
-//		CommonUtils.returnJson(response, JSON.toJSONString(res));
 	}
 	
 	public Map login(ResultSet rs) throws Exception{

@@ -8,9 +8,9 @@
 <script type="text/javascript" src="js/external/jquery-3.2.1.js"></script>
 </head>
 <body>
-<form id="form" method="post" action="login"s>
-账号：<input type="text" id="name" name="name"/><br/>
-密码：<input type="text" id="pass" name="pass"/><br/>
+<form id="form" method="post" action="login">
+账号：<input type="text" id="name" name="username"/><br/>
+密码：<input type="text" id="pass" name=password/><br/>
 <input type="hidden" name="handle" value="login">
 
 <input type="button" id="register" value="注册"/>
@@ -21,17 +21,15 @@
 $(function(){
 	$("#register").click(function(){
 		var data = {
-			name:$("#name").val(),
-			pass:$("#pass").val(),
+			username:$("#name").val(),
+			password:$("#pass").val(),
 			handle:"register"
 		};
 		$.post("login",data,function(result){
-			if(result.status=="success"){
-				window.location.href='index.jsp';
-			}else{
+			if(result.status!="success"){
 				$('#form')[0].reset()
-				alert(result.message);				
 			}
+			alert(result.message);	
 		});
 	})
 })
