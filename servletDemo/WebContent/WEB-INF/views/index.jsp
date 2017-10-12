@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>回忆</title>
+<title>二叉树的最优解法</title>
 <meta name="Keywords" content="" >
 <meta name="Description" content="" >
 <link href="css/index.css" rel="stylesheet">
@@ -17,11 +17,11 @@
 <div class="topnav">
 <div id="nav">
     <ul>
-      <li><a href="#top">首页</a></li>
-      <li><a href="#photowall">照片墙</a></li>
-      <li><a href="#interact">男女互动</a></li>
-      <li><a href="#blog">博客</a></li>
-      <li><a href="#hope">留言板</a></li>
+      <li><a id="top" href="#top" >首页</a></li>
+      <li><a id="top_photowall" href="javascript:void(0);">我們的照片</a></li>
+      <li><a id="top_about" href="javascript:void(0);">我們的互动</a></li>
+      <li><a id="top_blog" href="javascript:void(0);">我們的博客</a></li>
+      <li><a id="top_my_hope" href="javascript:void(0);">遊客的留言</a></li>
     </ul>
   </div>
 </div>
@@ -31,22 +31,9 @@
     <div class="text5">记录・回忆</div>
     <div class="flower"><img src="images/flower.jpg"></div>
   </div>
-  <!--nav begin-->
-<!--   <div id="nav"> -->
-<!--     <ul> -->
-<!--       <li><a href="">首页</a></li> -->
-<!--       <li><a href="#photowall">照片墙</a></li> -->
-<!--       <li><a href="#interact">男女互动</a></li> -->
-<!--       <li><a href="#blog">博客</a></li> -->
-<!--       <li><a href="#">模板分享</a></li> -->
-<!--       <li><a href="#">永无止境</a></li> -->
-<!--       <li><a href="#hope">留言板</a></li> -->
-<!--     </ul> -->
-<!--   </div> -->
-  <!--nav end--> 
+
 </header>
-<a name="photowall"></a>
-<div class="photowall">
+<div class="rotate photowall" style="display: none">
   <ul class="wall_a">
     <li><a href="/"><img src="images/p01.jpg">
       <figcaption>
@@ -79,15 +66,10 @@
         <h2>不再因为别人过得好而焦虑，在没有人看得到你的时候依旧能保持节奏 </h2>
       </figcaption>
       </a></li>
-    <li><a href="/"><img src="images/p06.jpg">
-      <figcaption>
-        <h2>不再因为别人过得好而焦虑，在没有人看得到你的时候依旧能保持节奏 </h2>
-      </figcaption>
-      </a></li>
   </ul>
 </div>
-<a name="interact"></a>
-<div class="about">
+
+<div class="rotate about" style="display: none">
   <ul>
     <div id="fountainG">
       <li></li>
@@ -107,8 +89,8 @@
     </div>
   </ul>
 </div>
-<div class="blank"></div>
-<div class="blog" name="#blog">
+
+<div class="rotate blog" style="display: none">
   <figure> <a href="/"><img src="images/t01.jpg"></a>
     <p><a href="/">愿有人陪你一起颠沛流离</a></p>
     <figcaption>有一天晚上我收到朋友的邮件，他问我怎样可以最快地摆脱寂寞，我想了想不知道应该怎么回答他，因为我从来没有摆脱过这个问题，我只能去习惯它，就像习惯身体的一部分。</figcaption>
@@ -122,31 +104,56 @@
     <figcaption>让世界拥有它的脚步，让我保有我的茧。当溃烂已极的心灵再不想做一丝一毫的思索时，就让我静静回到我的茧内，以回忆为睡榻，以悲哀为覆被，这是我唯一的美丽。</figcaption>
   </figure>
 </div>
-<div class="blank"></div>
-<div class="text6">相守・祝福</div>
-<div class="hope" name="#hope">
-  <ul>
-    <div class="visitors">
-      <dl>
-        <dt><img src="images/s6.jpg"> </dt>
-        <dd><a href="/">DanceSmile</a> </dd>
-        <dd>你们本就是天生一对，地造一双，而今共偕连理，今后更需彼此宽容、互相照顾，祝福你们！</dd>
-      </dl>
-      <dl>
-        <dt><img src="images/s7.jpg"> </dt>
-        <dd><a href="/">骄傲的小甜甜</a> </dd>
-        <dd>十年修得同船渡，百年修得共枕眠。于茫茫人海中找到她，分明是千年前的一段缘，祝你俩幸福美满，共谐连理。</dd>
-      </dl>
-      <dl>
-        <dt><img src="images/s8.jpg"> </dt>
-        <dd><a href="/">执子之手</a> </dd>
-        <dd>托清风捎去衷心的祝福，让流云奉上真挚的情意；今夕何夕，空气里都充满了醉人的甜蜜。谨祝我最亲爱的朋友，从今后，爱河永浴！</dd>
-      </dl>
-    </div>
-  </ul>
+
+<div class="rotate my_hope" style="display: none">
+	<div class="text6">相守・祝福</div>
+	<div class="hope" name="#hope">
+	  <ul>
+	    <div class="visitors">
+	      <dl>
+	        <dt><img src="images/s6.jpg"> </dt>
+	        <dd><a href="/">DanceSmile</a> </dd>
+	        <dd>你们本就是天生一对，地造一双，而今共偕连理，今后更需彼此宽容、互相照顾，祝福你们！</dd>
+	      </dl>
+	      <dl>
+	        <dt><img src="images/s7.jpg"> </dt>
+	        <dd><a href="/">骄傲的小甜甜</a> </dd>
+	        <dd>十年修得同船渡，百年修得共枕眠。于茫茫人海中找到她，分明是千年前的一段缘，祝你俩幸福美满，共谐连理。</dd>
+	      </dl>
+	      <dl>
+	        <dt><img src="images/s8.jpg"> </dt>
+	        <dd><a href="/">执子之手</a> </dd>
+	        <dd>托清风捎去衷心的祝福，让流云奉上真挚的情意；今夕何夕，空气里都充满了醉人的甜蜜。谨祝我最亲爱的朋友，从今后，爱河永浴！</dd>
+	      </dl>
+	    </div>
+	  </ul>
+	</div>
 </div>
 <footer>
   <p>Design by <a href="" target="_blank">po_shi</a></p>
 </footer>
 </body>
 </html>
+<script type="text/javascript">
+$(function(){
+	$("#top").click(function(){
+		 $(".rotate").hide();
+	});
+	$("#nav ul #top_photowall").click(function(){
+		 $(".rotate").hide();
+		$(".photowall").toggle();
+	});
+	$("#nav ul #top_about").click(function(){
+		 $(".rotate").hide();
+		$(".about").toggle();
+	});
+	$("#nav ul #top_blog").click(function(){
+		 $(".rotate").hide();
+		$(".blog").toggle();
+	});
+	$("#nav ul #top_my_hope").click(function(){
+		 $(".rotate").hide();
+		$(".my_hope").toggle();
+	});
+});
+</script>
