@@ -87,6 +87,26 @@
     <div class="about_boy"><span><a href="/"><img src="images/boy.jpg"></a></span>
       <p>初遇时，她的热情，她腼腆的微笑、可爱和气质，两个人共度的愉快时刻，一一印在我的回忆里...</p>
     </div>
+    <div class="about_girl"><span><a href="/"><img src="images/girl.jpg"></a></span>
+      <p>初遇时，他的幽默，他往日的深情、承诺和傻劲儿，两个人共度的美丽时刻，一一印在我的回忆里....</p>
+    </div>
+    <div class="about_boy"><span><a href="/"><img src="images/boy.jpg"></a></span>
+      <p>初遇时，她的热情，她腼腆的微笑、可爱和气质，两个人共度的愉快时刻，一一印在我的回忆里...</p>
+    </div>
+    <div class="about_girl"><span><a href="/"><img src="images/girl.jpg"></a></span>
+      <p>初遇时，他的幽默，他往日的深情、承诺和傻劲儿，两个人共度的美丽时刻，一一印在我的回忆里....</p>
+    </div>
+    <div class="about_boy"><span><a href="/"><img src="images/boy.jpg"></a></span>
+      <p>初遇时，她的热情，她腼腆的微笑、可爱和气质，两个人共度的愉快时刻，一一印在我的回忆里...</p>
+    </div>
+   	<div>
+   		<p>
+       		 <input type="text" placeholder="type and press enter to chat" id="chat" />
+    	</p>
+    	 <div id="console-container">
+        	<div id="console"/>
+    </div>
+   	</div>
   </ul>
 </div>
 
@@ -129,9 +149,9 @@
 	  </ul>
 	</div>
 </div>
-<footer>
-  <p>Design by <a href="" target="_blank">po_shi</a></p>
-</footer>
+<!-- <footer> -->
+<!--   <p>Design by <a href="" target="_blank">po_shi</a></p> -->
+<!-- </footer> -->
 </body>
 </html>
 <script type="text/javascript">
@@ -156,4 +176,80 @@ $(function(){
 		$(".my_hope").toggle();
 	});
 });
+</script>
+ <script type="application/javascript">
+
+        var Chat = {};
+
+        Chat.socket = null;
+
+        Chat.connect = (function(host) {
+            if ('WebSocket' in window) {
+                Chat.socket = new WebSocket(host);
+            } else if ('MozWebSocket' in window) {
+                Chat.socket = new MozWebSocket(host);
+            } else {
+                Console.log('Error: WebSocket is not supported by this browser.');
+                return;
+            }
+
+            Chat.socket.onopen = function () {
+                Console.log('Info: WebSocket connection opened.');
+                document.getElementById('chat').onkeydown = function(event) {
+                    if (event.keyCode == 13) {
+                        Chat.sendMessage();
+                    }
+                };
+            };
+
+            Chat.socket.onclose = function () {
+                document.getElementById('chat').onkeydown = null;
+                Console.log('Info: WebSocket closed.');
+            };
+
+            Chat.socket.onmessage = function (message) {
+                Console.log(message.data);
+            };
+        });
+
+        Chat.initialize = function() {
+            if (window.location.protocol == 'http:') {
+                Chat.connect('ws://localhost:9999/servletDemo/websocket/chat');
+            } else {
+                Chat.connect('wss://localhost:9999/servletDemo/websocket/chat');
+            }
+        };
+
+        Chat.sendMessage = (function() {
+            var message = document.getElementById('chat').value;
+            if (message != '') {
+                Chat.socket.send(message);
+                document.getElementById('chat').value = '';
+            }
+        });
+
+        var Console = {};
+
+        Console.log = (function(message) {
+            var console = document.getElementById('console');
+            var p = document.createElement('p');
+            p.style.wordWrap = 'break-word';
+            p.innerHTML = message;
+            console.appendChild(p);
+            while (console.childNodes.length > 25) {
+                console.removeChild(console.firstChild);
+            }
+            console.scrollTop = console.scrollHeight;
+        });
+
+        Chat.initialize();
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Remove elements with "noscript" class - <noscript> is not allowed in XHTML
+            var noscripts = document.getElementsByClassName("noscript");
+            for (var i = 0; i < noscripts.length; i++) {
+                noscripts[i].parentNode.removeChild(noscripts[i]);
+            }
+        }, false);
 </script>
