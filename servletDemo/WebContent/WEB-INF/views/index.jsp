@@ -1,3 +1,5 @@
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,7 +30,7 @@
 <header>
   <div class="quotes">
     <p>初遇时，她的微笑，她往日的深情、承诺和傻劲，两个人共度的美丽时刻，一一印在回忆里，今天的感情已经比不上从前，但是我爱着恋着往日的她，舍不得离开。</p>
-    <div class="text5">记录・回忆</div>
+<!--     <div class="text5">记录・回忆</div> -->
     <div class="flower"><img src="images/flower.jpg"></div>
   </div>
 
@@ -82,22 +84,11 @@
       <li></li>
     </div>
     <div class="about_girl"><span><a href="/"><img src="images/girl.jpg"></a></span>
-      <p>初遇时，他的幽默，他往日的深情、承诺和傻劲儿，两个人共度的美丽时刻，一一印在我的回忆里....</p>
+      <p>
+  <%=new Date()%><br/>初遇时，他的幽默，他往日的深情、承诺和傻劲儿，两个人共度的美丽时刻，一一印在我的回忆里....</p>
     </div>
     <div class="about_boy"><span><a href="/"><img src="images/boy.jpg"></a></span>
-      <p>初遇时，她的热情，她腼腆的微笑、可爱和气质，两个人共度的愉快时刻，一一印在我的回忆里...</p>
-    </div>
-    <div class="about_girl"><span><a href="/"><img src="images/girl.jpg"></a></span>
-      <p>初遇时，他的幽默，他往日的深情、承诺和傻劲儿，两个人共度的美丽时刻，一一印在我的回忆里....</p>
-    </div>
-    <div class="about_boy"><span><a href="/"><img src="images/boy.jpg"></a></span>
-      <p>初遇时，她的热情，她腼腆的微笑、可爱和气质，两个人共度的愉快时刻，一一印在我的回忆里...</p>
-    </div>
-    <div class="about_girl"><span><a href="/"><img src="images/girl.jpg"></a></span>
-      <p>初遇时，他的幽默，他往日的深情、承诺和傻劲儿，两个人共度的美丽时刻，一一印在我的回忆里....</p>
-    </div>
-    <div class="about_boy"><span><a href="/"><img src="images/boy.jpg"></a></span>
-      <p>初遇时，她的热情，她腼腆的微笑、可爱和气质，两个人共度的愉快时刻，一一印在我的回忆里...</p>
+      <p><%=new Date() %><br/>初遇时，她的热情，她腼腆的微笑、可爱和气质，两个人共度的愉快时刻，一一印在我的回忆里...</p>
     </div>
    	<div>
    		<p>
@@ -126,7 +117,7 @@
 </div>
 
 <div class="rotate my_hope" style="display: none">
-	<div class="text6">相守・祝福</div>
+<!-- 	<div class="text6">相守・祝福</div> -->
 	<div class="hope" name="#hope">
 	  <ul>
 	    <div class="visitors">
@@ -134,6 +125,36 @@
 	        <dt><img src="images/s6.jpg"> </dt>
 	        <dd><a href="/">DanceSmile</a> </dd>
 	        <dd>你们本就是天生一对，地造一双，而今共偕连理，今后更需彼此宽容、互相照顾，祝福你们！</dd>
+	      </dl>
+	      <dl>
+	        <dt><img src="images/s7.jpg"> </dt>
+	        <dd><a href="/">骄傲的小甜甜</a> </dd>
+	        <dd>十年修得同船渡，百年修得共枕眠。于茫茫人海中找到她，分明是千年前的一段缘，祝你俩幸福美满，共谐连理。</dd>
+	      </dl>
+	      <dl>
+	        <dt><img src="images/s8.jpg"> </dt>
+	        <dd><a href="/">执子之手</a> </dd>
+	        <dd>托清风捎去衷心的祝福，让流云奉上真挚的情意；今夕何夕，空气里都充满了醉人的甜蜜。谨祝我最亲爱的朋友，从今后，爱河永浴！</dd>
+	      </dl>
+	      <dl>
+	        <dt><img src="images/s7.jpg"> </dt>
+	        <dd><a href="/">骄傲的小甜甜</a> </dd>
+	        <dd>十年修得同船渡，百年修得共枕眠。于茫茫人海中找到她，分明是千年前的一段缘，祝你俩幸福美满，共谐连理。</dd>
+	      </dl>
+	      <dl>
+	        <dt><img src="images/s8.jpg"> </dt>
+	        <dd><a href="/">执子之手</a> </dd>
+	        <dd>托清风捎去衷心的祝福，让流云奉上真挚的情意；今夕何夕，空气里都充满了醉人的甜蜜。谨祝我最亲爱的朋友，从今后，爱河永浴！</dd>
+	      </dl>
+	      <dl>
+	        <dt><img src="images/s7.jpg"> </dt>
+	        <dd><a href="/">骄傲的小甜甜</a> </dd>
+	        <dd>十年修得同船渡，百年修得共枕眠。于茫茫人海中找到她，分明是千年前的一段缘，祝你俩幸福美满，共谐连理。</dd>
+	      </dl>
+	      <dl>
+	        <dt><img src="images/s8.jpg"> </dt>
+	        <dd><a href="/">执子之手</a> </dd>
+	        <dd>托清风捎去衷心的祝福，让流云奉上真挚的情意；今夕何夕，空气里都充满了醉人的甜蜜。谨祝我最亲爱的朋友，从今后，爱河永浴！</dd>
 	      </dl>
 	      <dl>
 	        <dt><img src="images/s7.jpg"> </dt>
@@ -214,9 +235,10 @@ $(function(){
 
         Chat.initialize = function() {
             if (window.location.protocol == 'http:') {
-                Chat.connect('ws://localhost:9999/servletDemo/websocket/chat');
+            	
+                Chat.connect('ws://'+window.location.host+'/servletDemo/websocket/chat');
             } else {
-                Chat.connect('wss://localhost:9999/servletDemo/websocket/chat');
+                Chat.connect('wss://'+window.location.host+'/servletDemo/websocket/chat');
             }
         };
 

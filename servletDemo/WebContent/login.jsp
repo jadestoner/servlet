@@ -8,7 +8,7 @@
 <script type="text/javascript" src="js/external/jquery-3.2.1.js"></script>
 </head>
 <body>
-<form id="form" method="post" action="login">
+<form id="form" method="post" action="index">
 账号：<input type="text" id="name" name="username"/><br/>
 密码：<input type="text" id="pass" name=password/><br/>
 <input type="hidden" name="handle" value="login">

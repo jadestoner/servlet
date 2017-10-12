@@ -7,7 +7,7 @@ img { border: 0; }
 body { font-size: 12px; background: #226039 url(../images/bg.jpg) center 0 scroll no-repeat; color: #5d5d5d; }
 .blank { height: 270px; overflow: hidden; width: 100%; margin: auto; clear: both }
 /* header */
-header { width: 100%; margin: auto auto 20% auto; border-bottom: #3c7a48 1px solid }
+header { width: 100%; margin: auto auto auto auto; border-bottom: #3c7a48 1px solid }
 .quotes { width: 1000px; position: relative; margin: 60px auto 120px auto; }
 .quotes p { text-shadow: #246640 1px 1px 1px; color: #fff; width: 330px; line-height: 26px; }
 .text5 { position: absolute; left: 0px; top: 160px; font-family: "微软雅黑"; font-size: 30px; color: #FFF; -webkit-box-reflect: below -3px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(white)); }/* below文字倒影方向向下，距离3px 颜色渐变由上往下 */

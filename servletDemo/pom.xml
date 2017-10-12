@@ -41,5 +41,12 @@
     <artifactId>tomcat-embed-logging-juli</artifactId>
     <version>9.0.0.M6</version>
 </dependency>
+      <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.44</version>
+      </dependency>
+
   </dependencies>
 </project>

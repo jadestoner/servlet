@@ -45,7 +45,6 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 	}
 	
 	private void doRegister(){
-		User user = CommonUtils.getBean(request, User.class);
 		String name = request.getParameter("username");
 		String pass = request.getParameter("password");
 		Integer result = null ;
@@ -74,6 +73,7 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 	}
 	
 	private void doLogin() throws ServletException, IOException{
+		User user = CommonUtils.getBean(request, User.class);
 		String name = request.getParameter("name");
 		String pass = request.getParameter("pass");
 		Map result = null ;
@@ -89,6 +89,8 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 		}else {
 			res = new Response(Response.Status.error,"未查询到相关顾客！");
 		}	
+//		request.setAttribute("response", res);
+//		response.sendRedirect("index.jsp");
 		RequestDispatcher dispatcher =  request.getRequestDispatcher("/WEB-INF/views/index.jsp");
 		dispatcher.forward(request, response);
 	}
