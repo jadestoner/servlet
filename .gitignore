@@ -10,7 +10,7 @@ bin
 .metadata
 */.idea/*
 *.iml
-。idea/*
+.idea/*
 
 #.gitignore for java
 *.class
