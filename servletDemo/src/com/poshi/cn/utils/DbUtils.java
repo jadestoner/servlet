@@ -61,7 +61,7 @@ public class DbUtils{
         return result;
 	}
 	
-	public Map executePreQuerySql( String sql, List<Object> list, StatementHandle callBack) throws Exception{
+	public Map executePreQuerySql(String sql, List<Object> list, StatementHandle callBack) throws Exception{
 		if(list != null && list.size() != StringUtils.appearNumber(sql, "?")){
 			throw new Exception(String.format("参数数量错误！参数size=%d,sql=%s",list.size(),sql));
 		}
@@ -78,7 +78,7 @@ public class DbUtils{
         return result;
 	}
 	
-	public Integer executePreUpdateSql( String sql, List<Object> list, StatementHandle callBack) throws Exception{
+	public Integer executePreUpdateSql( String sql, List<Object> list ) throws Exception{
 		if(list != null && list.size() != StringUtils.appearNumber(sql, "?")){
 			throw new Exception(String.format("参数数量错误！参数size=%d,sql=%s",list.size(),sql));
 		}

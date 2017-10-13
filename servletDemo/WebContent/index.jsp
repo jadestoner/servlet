@@ -7,10 +7,6 @@
 <title>首页</title>
 </head>
 <body>
-<%
 
-RequestDispatcher dispatcher =  request.getRequestDispatcher("/WEB-INF/views/index.jsp");
-dispatcher.forward(request, response);
-%>
 </body>
 </html>

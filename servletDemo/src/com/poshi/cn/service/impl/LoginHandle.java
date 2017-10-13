@@ -2,7 +2,6 @@ package com.poshi.cn.service.impl;
 
 import java.io.IOException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSON;
 import com.poshi.cn.bean.User;
@@ -59,7 +59,7 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 			e1.printStackTrace();
 		}
 		try {
-			result = DbUtils.getDbUtils(request).executePreUpdateSql(MethodOfSql.REGISTER.getSql(), Arrays.asList(name,pass),this);
+			result = DbUtils.getDbUtils(request).executePreUpdateSql(MethodOfSql.REGISTER.getSql(), Arrays.asList(name,pass));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -82,6 +82,10 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("user", user);
+		
 		int total = Integer.valueOf(String.valueOf(result.get("total")));
 		Response res;
 		if(total>0){
@@ -89,8 +93,6 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 		}else {
 			res = new Response(Response.Status.error,"未查询到相关顾客！");
 		}	
-//		request.setAttribute("response", res);
-//		response.sendRedirect("index.jsp");
 		RequestDispatcher dispatcher =  request.getRequestDispatcher("/WEB-INF/views/index.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -101,14 +103,5 @@ public class LoginHandle extends HttpServlet implements StatementHandle{
 			return null;
 		}
 		return list.get(0);
-	}
-	
-	public Map register(ResultSet rs) throws Exception{
-		List<Map<String, Object>> list = DbUtils.resultSetToList(rs);
-		if(list == null || list.size() == 0){
-			return null;
-		}
-		return list.get(0);
-	}
-	
+	}		
 }
